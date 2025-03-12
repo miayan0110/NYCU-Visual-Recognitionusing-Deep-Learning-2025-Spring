@@ -1,4 +1,5 @@
 *.tar.gz
 *.jpg
-./hw1/__pycache__/*
-./hw1/ckpt/*
+*.pth
+hw1/__pycache__/*
+hw1/ckpt/*
