@@ -1,12 +1,9 @@
 python main.py \
---gpu_id 1 \
---mode train \
+--gpu_id 5 \
+--mode test \
 --ckpt_root ./ckpt \
---save_per_epoch 10 \
 --result_path prediction.csv \
---batch_size 128 \
---num_epochs 1000 \
-# --resume \
+--ckpt_path ./ckpt/checkpoint_0010.pth
 
 # gpu id | real id
 #    0   |    2

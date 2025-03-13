@@ -20,23 +20,18 @@ class TrainValDataset(Dataset):
         ])
         
         for folder in self.folder_list:
-            print(f'processing {folder}...')
+            # print(f'processing {folder}...')
             for idx, file in enumerate(os.listdir(folder)):
                 src = f'{folder}/{file}'
-                # dst = f"{folder}/{folder.split('/')[-1]}_{idx}.jpg"
-
-                # print(f'rename {src} to {dst}...')
-                # os.rename(src, dst)
-
                 self.img_list.append(src)
-        print(f'=> {len(self.img_list)} images for training.')
+        print(f'=> {len(self.img_list)} images for {mode}.')
         
     def __len__(self):
         return len(self.img_list)
     
     def __getitem__(self, index):
         img = Image.open(self.img_list[index]).convert('RGB')
-        label = int(self.img_list[index].split('_')[0].split('/')[-1])
+        label = int(self.img_list[index].split('/')[3])
 
         processed_img = self.preprocess(img)
         one_hot_label = torch.zeros(100)
@@ -66,5 +61,3 @@ class TestDataset(Dataset):
         processed_img = self.preprocess(img)
 
         return img_name, processed_img
-
-

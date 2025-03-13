@@ -4,15 +4,13 @@ from torchvision import models
 
 
 class ResNet(nn.Module):
-    def __init__(self):
+    def __init__(self, num_classes):
         super().__init__()
-        self.resnet = models.resnet50(pretrained=True)
-        self.linear = nn.Linear(in_features=1000, out_features=100, bias=True)  # adapt output class to 100 categories
-        # print(self.resnet)
+        self.resnet = models.resnet152(pretrained=True)
+        self.resnet.fc = nn.Linear(self.resnet.fc.in_features, num_classes)
 
     def forward(self, img):
         x  = self.resnet(img)
-        x = self.linear(x)
         return x
     
 

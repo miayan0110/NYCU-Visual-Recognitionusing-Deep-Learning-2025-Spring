@@ -1,5 +1,6 @@
 *.tar.gz
 *.jpg
 *.pth
+*.csv
 hw1/__pycache__/*
 hw1/ckpt/*
