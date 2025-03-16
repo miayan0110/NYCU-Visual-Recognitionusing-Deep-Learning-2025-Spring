@@ -1,8 +1,10 @@
+import os
 import argparse
 from torch.utils.data import DataLoader
 import torch.optim as optim
 from tqdm import tqdm
 import csv
+import matplotlib.pyplot as plt
 
 from dataloader import *
 from model import *
@@ -20,6 +22,7 @@ def get_args():
     parser.add_argument('--lr', default=1e-4, type=float)   # learning rate
     parser.add_argument('--batch_size', default=64, type=int)   # batch size
     parser.add_argument('--num_epochs', default=1000, type=int)   # training number of epochs
+    parser.add_argument('--num_classes', default=100, type=int)   # total number of categories
     parser.add_argument('--resume', action='store_true')    # whether keeping training the previous model or not
 
     args = parser.parse_args()
@@ -41,7 +44,8 @@ def train(args, model, dataloader, val_dataloader, resume):
     print('=> start training...')
     model.train()
 
-    val_loss_list = [0.003998014703392982]
+    train_loss_list = []
+    val_loss_list = []
     for epoch in range(start_epoch, args.num_epochs):
         epoch_loss = 0.0
         pbar = tqdm(dataloader, desc=f"Epoch {epoch+1}/{args.num_epochs}")
@@ -61,11 +65,15 @@ def train(args, model, dataloader, val_dataloader, resume):
             pbar.set_postfix(loss=loss.item())        
         
         print(f"Epoch {epoch+1} - Avg Loss: {epoch_loss / len(dataloader)}")
+        train_loss_list.append(epoch_loss / len(dataloader))
 
         val_loss = val(args, model, val_dataloader)
         val_loss_list.append(val_loss)
-        if (epoch+1) % args.save_per_epoch == 0 and max(val_loss_list) == val_loss:
+        if (epoch+1) % args.save_per_epoch == 0: #and min(val_loss_list) == val_loss:
             save_model(model, optimizer, epoch + 1, f'{args.ckpt_root}/checkpoint_{epoch+1:04d}.pth')
+
+    save_loss_plot(train_loss_list)
+
 
 def val(args, model, dataloader):
     device = f'cuda:{args.gpu_id}'
@@ -132,9 +140,23 @@ def get_model_size(model):
     param_num = sum(p.numel() for p in model.parameters()) / 1000000.0
     print(f'#Parameters: {param_num:.2f}M')
 
+def save_loss_plot(loss_list, save_path="loss_plot3.png", title="Loss Curve"):
+    plt.figure(figsize=(8, 5))
+    plt.plot(range(1, len(loss_list) + 1), loss_list, label="Loss", color="b", linewidth=2)
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    
+    plt.savefig
+    print(f"Save loss curve to {save_path}...")
+
 
 if __name__ == '__main__':
     args = get_args()
+
+    os.makedirs(args.ckpt_root, exist_ok=True)
     
     print(f'Mode: {args.mode}')
     if args.mode == 'test':
@@ -144,7 +166,8 @@ if __name__ == '__main__':
         dataset = TrainValDataset(args.mode)
 
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=(args.mode in ['train', 'val']))
-    model = ResNet(num_classes=100)
+    model = ResNeXt(num_classes=args.num_classes)
+    get_model_size(model)
 
     match(args.mode):
         case 'train':

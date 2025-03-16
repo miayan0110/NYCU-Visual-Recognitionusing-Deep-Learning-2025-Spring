@@ -6,7 +6,7 @@ Name: 顏琦恩
 
 ## Introduction
 
-The task of homework 1 is image classification. I use ResNet152 as base model and change the output class number to 100 to fit our task.
+The task of homework 1 is image classification. I use ResNeXt101 as base model and change the output class number to 100 to fit our task.
 
 ## Requirements
 

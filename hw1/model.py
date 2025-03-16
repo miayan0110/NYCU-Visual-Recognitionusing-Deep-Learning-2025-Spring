@@ -3,14 +3,28 @@ import torch.nn as nn
 from torchvision import models
 
 
-class ResNet(nn.Module):
+class ResNeXt(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
-        self.resnet = models.resnet152(pretrained=True)
-        self.resnet.fc = nn.Linear(self.resnet.fc.in_features, num_classes)
+        self.resnet = models.resnext101_64x4d(weights='DEFAULT')
+        self.attention = nn.Sequential(
+            nn.Linear(1000, 1000 // 2),
+            nn.Tanh(),
+            nn.Linear(1000 // 2, 1000),
+            nn.Sigmoid()
+        )
+        self.classifier = nn.Sequential(
+            nn.BatchNorm1d(1000),
+            nn.Linear(1000, 512),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(512, num_classes)
+        )
 
     def forward(self, img):
         x  = self.resnet(img)
+        attn_weights = self.attention(x)
+        x = self.classifier(x * attn_weights)
         return x
     
 

@@ -13,6 +13,7 @@ class TrainValDataset(Dataset):
         self.folder_list = glob.glob(f'./data/{mode}/*')
         self.img_list = []
         self.preprocess = transforms.Compose([
+            transforms.RandomHorizontalFlip(p=0.5),
             torchvision.transforms.Resize(256),
             torchvision.transforms.CenterCrop((256, 256)),
             transforms.ToTensor(),
