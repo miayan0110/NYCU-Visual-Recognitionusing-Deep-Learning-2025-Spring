@@ -1,4 +1,4 @@
-# Homework 1 - Image classification
+# Homework 1 - Image classification 🖼️
 
 Student ID: 313551073
 
@@ -6,11 +6,11 @@ Name: 顏琦恩
 
 ## Introduction
 
-The task of homework 1 is image classification. I use ResNeXt101 as base model and change the output class number to 100 to fit our task.
+Homework 1 focuses on image classification, where a model learns to categorize images into predefined classes. The task involves data preprocessing, designing a ResNet-based model, and implementing training, validation, and evaluation. The dataset is provided by the TAs. Requirements and other details are decribed below.
 
 ## Requirements
 
-
+The pretrained model used in this homework is from pytorch, just make sure to have a python environment with a proper pytorch version.
 
 ## Getting started
 
