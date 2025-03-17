@@ -21,7 +21,7 @@ def get_args():
 
     parser.add_argument('--lr', default=1e-4, type=float)   # learning rate
     parser.add_argument('--batch_size', default=64, type=int)   # batch size
-    parser.add_argument('--num_epochs', default=1000, type=int)   # training number of epochs
+    parser.add_argument('--num_epochs', default=100, type=int)   # training number of epochs
     parser.add_argument('--num_classes', default=100, type=int)   # total number of categories
     parser.add_argument('--resume', action='store_true')    # whether keeping training the previous model or not
 
@@ -85,12 +85,16 @@ def val(args, model, dataloader):
 
         ckpt_list = glob.glob(f'{args.ckpt_root}/*.pth')
         ckpt_list.sort()
-        model, _, _ = load_model(model, optimizer, ckpt_list[-1], device)
+        load_path = ckpt_list[-1]
+        if args.ckpt_path != '':
+            load_path = args.ckpt_path
+        model, _, _ = load_model(model, optimizer, load_path, device)
 
     print('=> start validation...')
     model.eval()
 
     total_loss = 0.0
+    total_acc = 0.0
     with torch.no_grad():
         pbar = tqdm(dataloader)
 
@@ -100,11 +104,13 @@ def val(args, model, dataloader):
 
             pred = model(img)
             loss = criterion(pred, label)
+            acc = ((torch.argmax(pred)==torch.argmax(label))*1.0)
 
             total_loss += loss.item()
-            pbar.set_postfix(loss=loss.item())        
+            total_acc += acc.item()
+            pbar.set_postfix(loss=loss.item())
         
-        print(f"Val Avg Loss: {total_loss / len(dataloader)}")
+        print(f"Val Avg Loss: {total_loss / len(dataloader)}, Val Avg Acc: {total_acc / len(dataloader)}")
         return total_loss / len(dataloader)
 
 def eval(args, model, dataloader):
@@ -136,11 +142,12 @@ def eval(args, model, dataloader):
                 pred = model(img)
                 writer.writerow([img_name[0], torch.argmax(pred).item()])
 
+
 def get_model_size(model):
     param_num = sum(p.numel() for p in model.parameters()) / 1000000.0
     print(f'#Parameters: {param_num:.2f}M')
 
-def save_loss_plot(loss_list, save_path="loss_plot3.png", title="Loss Curve"):
+def save_loss_plot(loss_list, save_path="loss_plot.png", title="Loss Curve"):
     plt.figure(figsize=(8, 5))
     plt.plot(range(1, len(loss_list) + 1), loss_list, label="Loss", color="b", linewidth=2)
     plt.xlabel("Epoch")
@@ -149,7 +156,8 @@ def save_loss_plot(loss_list, save_path="loss_plot3.png", title="Loss Curve"):
     plt.legend()
     plt.grid(True)
     
-    plt.savefig
+    plt.savefig(save_path)
+    plt.close()
     print(f"Save loss curve to {save_path}...")
 
 
@@ -161,6 +169,9 @@ if __name__ == '__main__':
     print(f'Mode: {args.mode}')
     if args.mode == 'test':
         dataset = TestDataset()
+        args.batch_size = 1
+    elif args.mode == 'val':
+        dataset = TrainValDataset(args.mode)
         args.batch_size = 1
     else:
         dataset = TrainValDataset(args.mode)
