@@ -8,11 +8,11 @@ Name: 顏琦恩
 
 This repository stores the homework of Visual Recognitionusing Deep Learning in 2025 Spring. The following section is the content of this repository. Please click into the corresponding folder to check details of each homework.
 
-- [Homework 1: Image classification](https://github.com/miayan0110/NYCU-Visual-Recognitionusing-Deep-Learning-2025-Spring/tree/master/hw1)
+- [Homework 1: Image classification 🖼️](https://github.com/miayan0110/NYCU-Visual-Recognitionusing-Deep-Learning-2025-Spring/tree/master/hw1)
 
 
 
-## Commands
+<!-- ## Commands
 
 To check/get old user info:
 
@@ -32,4 +32,4 @@ To list hidden files:
 
 ```
 ls -a
-```
+``` -->
