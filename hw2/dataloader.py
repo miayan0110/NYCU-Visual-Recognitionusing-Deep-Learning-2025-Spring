@@ -23,7 +23,7 @@ class HW2Data(Dataset):
                 self.anno_list = data['annotations']
                 self.cat_list = data['categories']
         else:
-            self.img_list = glob.glob(f'{img_root}/*.png')
+            self.img_list = sorted(glob.glob(f'{img_root}/*.png'))
 
     def __len__(self):
         return len(self.img_list)
@@ -46,5 +46,5 @@ class HW2Data(Dataset):
         img = Image.open(self.img_list[index]).convert('RGB')
         img = self.preprocess(img)
         
-        return img, index+1
+        return img, int(self.img_list[index].split('/')[-1].split('.')[0])
     
