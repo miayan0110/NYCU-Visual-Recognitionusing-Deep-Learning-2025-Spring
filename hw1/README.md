@@ -31,7 +31,7 @@ The parameter `resume` can only be used for resuming the training process.
 
 ### Inference
 
-To train the model, run `bash run_test.sh` or execute the following command.
+To test the model, run `bash run_test.sh` or execute the following command.
 ```
 python main.py \
 --gpu_id 1 \

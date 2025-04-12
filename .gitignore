@@ -10,3 +10,4 @@ hw1/__pycache__/*
 hw1/ckpt/*
 hw1/model2.py
 hw2/records/*
+hw2/plots/*

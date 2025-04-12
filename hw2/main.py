@@ -52,7 +52,7 @@ def initialize_model(resume=False, device='cuda'):
     start_epoch = 0
 
     if resume:
-        ckpt_path = sorted(glob.glob('./ckpt/trainable_2/*.pth'))[-1]
+        ckpt_path = sorted(glob.glob('./ckpt/*.pth'))[-1]
         model, optimizer, start_epoch = load_checkpoint(
             model, 
             optimizer, 
@@ -85,11 +85,8 @@ def train_one_epoch(model, data_loader, optimizer, device, epoch):
         pbar.set_postfix(loss=total_loss / (pbar.n + 1))
     return total_loss / len(data_loader)
 
-def train_model(data_loader, num_epochs=10, device='cuda', checkpoint_dir='ckpt/trainable_2', resume=False):
+def train_model(data_loader, num_epochs=10, device='cuda', checkpoint_dir='ckpt', resume=False):
     model, optimizer, start_epoch, writer = initialize_model(resume, device=device)
-    logdir = './records/trainable_2'
-    os.makedirs(logdir, exist_ok=True)
-    writer = SummaryWriter(logdir)
 
     model.to(device)
     for epoch in range(start_epoch, num_epochs):
