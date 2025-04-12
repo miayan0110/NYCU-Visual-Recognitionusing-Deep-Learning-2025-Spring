@@ -16,10 +16,11 @@ The pretrained model used in this homework is from pytorch, just make sure to ha
 
 ### Training
 
-- To train and validate the model, execute the command `python main.py`, please checkout the dataset path and the checkpoint path before executing.
-- The testing process will be automatically executed if line 190 and 191 in the main function aren't commented.
+- To train and validate the model, simply run the command `python main.py`.
+- Please checkout the dataset path and the checkpoint path before executing. You can find the line for the paths by searching __CHECK HERE__ in script `main.py`.
+- The testing process will be executed automatically if lines 190 and 191 in the main function are not commented out.
 - The parameter `resume` in the main function can only be used for resuming the training process.
 
 ### Inference
 
-- To test the model, run `python main.py` with line 187 and 188 in main function commented.
+- To perform model testing, run python `main.py` with lines 187 and 188 in the main function commented out.

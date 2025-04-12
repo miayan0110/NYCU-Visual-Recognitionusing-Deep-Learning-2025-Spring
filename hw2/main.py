@@ -52,7 +52,9 @@ def initialize_model(resume=False, device='cuda'):
     start_epoch = 0
 
     if resume:
-        ckpt_path = sorted(glob.glob('./ckpt/*.pth'))[-1]
+        # CHECK HERE (change to your checkpoint root)
+        ckpt_root = './ckpt'
+        ckpt_path = sorted(glob.glob(f'{ckpt_root}/*.pth'))[-1]
         model, optimizer, start_epoch = load_checkpoint(
             model, 
             optimizer, 
@@ -96,6 +98,8 @@ def train_model(data_loader, num_epochs=10, device='cuda', checkpoint_dir='ckpt'
         print(f"Epoch {epoch+1}, Loss: {loss:.4f}")
 
         save_checkpoint(model, optimizer, epoch, checkpoint_dir)
+
+        # CHECK HERE (change to your dataset path)
         valid_loader = DataLoader(HW2Data('./nycu-hw2-data/valid', './nycu-hw2-data/valid.json'),batch_size=8, shuffle=False, collate_fn=collate_fn)
         mAP = valid_model(valid_loader, device=device)
         writer.add_scalar('mAP', mAP, epoch+1)
@@ -182,11 +186,13 @@ def collate_fn(batch):
     return list(images), list(targets)
 
 def main():
-    device = torch.device('cuda:6' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
+    # CHECK HERE (change to your dataset path)
     train_loader = DataLoader(HW2Data('./nycu-hw2-data/train', './nycu-hw2-data/train.json'),batch_size=8, shuffle=True, collate_fn=collate_fn)
     train_model(train_loader, num_epochs=10, device=device, resume=False)
     
+    # CHECK HERE (change to your dataset path)
     test_loader = DataLoader(HW2Data('./nycu-hw2-data/test'), batch_size=1, shuffle=False)
     evaluate_model(test_loader, device=device)
 
