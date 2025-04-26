@@ -6,9 +6,13 @@
 *.jpg
 *.json
 *.pyc
+*.tif
 hw1/__pycache__/*
 hw1/ckpt/*
 hw1/model2.py
 hw2/records/*
 hw2/plots/*
 hw2/results/*
+hw3/dataset/*
+hw3/hw3-sample-code/*
+hw3/records/*
