@@ -95,49 +95,40 @@ python example_img2npz.py
 ### Below is the loss curve of the training process and score on the leaderboard:
 |Total Loss|SSIM|L1|Total Variation Loss|
 |:-:|:-:|:-:|:-:|
-|![image](./imgs/loss_total.png)|![image](./imgs/loss_ssim.png)|![image](./imgs/loss_l1.png)|![image](./imgs/loss_tv.png)|
+| <img src="./imgs/loss_total.png" width="400"/> | <img src="./imgs/loss_ssim.png" width="400"/> | <img src="./imgs/loss_l1.png" width="400"/> | <img src="./imgs/loss_tv.png" width="400"/> |
 
-<img src="./imgs/leaderboard_snapshot.png" width="1000"/>
+<img src="./imgs/leaderboard_snapshot.png" width="1200"/>
 
 
 
 ### Here are some visualizations of deraining and desnowing result:
 
-<style>
-  table, th, td {
-    border-collapse: collapse;
-    text-align: center;
-    vertical-align: middle;
-    padding: 8px;
-  }
-</style>
-
-<table>
+<table cellpadding="8">
   <thead>
     <tr>
       <th></th>
-      <th colspan="3">Desnow</th>
-      <th colspan="3">Derain</th>
+      <th colspan="3" style="text-align:center;"><b>Desnow</b></th>
+      <th colspan="3" style="text-align:center;"><b>Derain</b></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><b>Degraded image</b></td>
-      <td><img src="./imgs/6_de.png" width="200"/></td>
-      <td><img src="./imgs/40_de.png" width="200"/></td>
-      <td><img src="./imgs/64_de.png" width="200"/></td>
-      <td><img src="./imgs/42_de.png" width="200"/></td>
-      <td><img src="./imgs/88_de.png" width="200"/></td>
-      <td><img src="./imgs/90_de.png" width="200"/></td>
+      <td style="text-align:center;"><b>Degraded image</b></td>
+      <td><img src="./imgs/6_de.png" width="150"/></td>
+      <td><img src="./imgs/40_de.png" width="150"/></td>
+      <td><img src="./imgs/64_de.png" width="150"/></td>
+      <td><img src="./imgs/42_de.png" width="150"/></td>
+      <td><img src="./imgs/88_de.png" width="150"/></td>
+      <td><img src="./imgs/90_de.png" width="150"/></td>
     </tr>
     <tr>
-      <td><b>Output image</b></td>
-      <td><img src="./imgs/6_out.png" width="200"/></td>
-      <td><img src="./imgs/40_out.png" width="200"/></td>
-      <td><img src="./imgs/64_out.png" width="200"/></td>
-      <td><img src="./imgs/42_out.png" width="200"/></td>
-      <td><img src="./imgs/88_out.png" width="200"/></td>
-      <td><img src="./imgs/90_out.png" width="200"/></td>
+      <td style="text-align:center;"><b>Output image</b></td>
+      <td><img src="./imgs/6_out.png" width="150"/></td>
+      <td><img src="./imgs/40_out.png" width="150"/></td>
+      <td><img src="./imgs/64_out.png" width="150"/></td>
+      <td><img src="./imgs/42_out.png" width="150"/></td>
+      <td><img src="./imgs/88_out.png" width="150"/></td>
+      <td><img src="./imgs/90_out.png" width="150"/></td>
     </tr>
   </tbody>
 </table>
