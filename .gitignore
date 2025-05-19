@@ -7,6 +7,8 @@
 *.json
 *.pyc
 *.tif
+*.zip
+*.npz
 hw1/__pycache__/*
 hw1/ckpt/*
 hw1/model2.py
@@ -16,3 +18,5 @@ hw2/results/*
 hw3/dataset/*
 hw3/hw3-sample-code/*
 hw3/records/*
+hw4/dataset/*
+!hw4/imgs/*
