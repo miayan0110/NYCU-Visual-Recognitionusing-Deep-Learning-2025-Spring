@@ -114,21 +114,21 @@ python example_img2npz.py
   <tbody>
     <tr>
       <td style="text-align:center;"><b>Degraded image</b></td>
-      <td><img src="./imgs/6_de.png" width="150"/></td>
-      <td><img src="./imgs/40_de.png" width="150"/></td>
-      <td><img src="./imgs/64_de.png" width="150"/></td>
-      <td><img src="./imgs/42_de.png" width="150"/></td>
-      <td><img src="./imgs/88_de.png" width="150"/></td>
-      <td><img src="./imgs/90_de.png" width="150"/></td>
+      <td><img src="./imgs/6_de.png" width="120"/></td>
+      <td><img src="./imgs/40_de.png" width="120"/></td>
+      <td><img src="./imgs/64_de.png" width="120"/></td>
+      <td><img src="./imgs/42_de.png" width="120"/></td>
+      <td><img src="./imgs/88_de.png" width="120"/></td>
+      <td><img src="./imgs/90_de.png" width="120"/></td>
     </tr>
     <tr>
       <td style="text-align:center;"><b>Output image</b></td>
-      <td><img src="./imgs/6_out.png" width="150"/></td>
-      <td><img src="./imgs/40_out.png" width="150"/></td>
-      <td><img src="./imgs/64_out.png" width="150"/></td>
-      <td><img src="./imgs/42_out.png" width="150"/></td>
-      <td><img src="./imgs/88_out.png" width="150"/></td>
-      <td><img src="./imgs/90_out.png" width="150"/></td>
+      <td><img src="./imgs/6_out.png" width="120"/></td>
+      <td><img src="./imgs/40_out.png" width="120"/></td>
+      <td><img src="./imgs/64_out.png" width="120"/></td>
+      <td><img src="./imgs/42_out.png" width="120"/></td>
+      <td><img src="./imgs/88_out.png" width="120"/></td>
+      <td><img src="./imgs/90_out.png" width="120"/></td>
     </tr>
   </tbody>
 </table>
