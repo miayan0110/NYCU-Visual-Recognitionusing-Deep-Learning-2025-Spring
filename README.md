@@ -11,6 +11,7 @@ This repository stores the homework of Visual Recognitionusing Deep Learning in 
 - [Homework 1: Image classification 🖼️](https://github.com/miayan0110/NYCU-Visual-Recognitionusing-Deep-Learning-2025-Spring/tree/master/hw1)
 - [Homework 2: Digit Recognition 🔍](https://github.com/miayan0110/NYCU-Visual-Recognitionusing-Deep-Learning-2025-Spring/tree/master/hw2)
 - [Homework 3: Instance Segmentation 🧩](https://github.com/miayan0110/NYCU-Visual-Recognitionusing-Deep-Learning-2025-Spring/tree/master/hw3)
+- [Homework 4 - Image Restoration 🌧️❄️](https://github.com/miayan0110/NYCU-Visual-Recognitionusing-Deep-Learning-2025-Spring/tree/master/hw4)
 
 
 
