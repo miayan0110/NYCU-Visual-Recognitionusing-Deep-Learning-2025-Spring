@@ -43,6 +43,7 @@ After placing the training data the directory structure would be as follows:
 ```
 The ```data_dir``` file ```rainTrain.txt``` will also be needed, run
 ```
+cd src
 python datalist.py
 ```
 to obtain the file, and place it into the folder ```data_dir/rainy```.

@@ -9,6 +9,7 @@
 *.tif
 *.zip
 *.npz
+*.ckpt
 hw1/__pycache__/*
 hw1/ckpt/*
 hw1/model2.py
@@ -19,4 +20,5 @@ hw3/dataset/*
 hw3/hw3-sample-code/*
 hw3/records/*
 hw4/dataset/*
+hw4/src/wandb/*
 !hw4/imgs/*
